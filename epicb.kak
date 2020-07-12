@@ -56,7 +56,7 @@ evaluate-commands %sh{
 		face global StatusCursor PrimaryCursor
 		face global Prompt black,${now}
 		face global MatchingChar default,default+r
-		face global BufferPadding bright-black
+		face global BufferPadding black,black
 		face global Whitespace ${whitespace}+f
 		face global WrapMarker Whitespace
 	"
