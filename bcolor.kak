@@ -3,7 +3,7 @@ evaluate-commands %sh{
 	main=${kak_opt_bcolor_main-'bright-blue'}
 	cursor_primary=${kak_opt_bcolor_cursor_primary-$main}
 	cursor_secondary=${kak_opt_bcolor_cursor_secondary-'white'}
-	background_secondary=${kak_opt_bcolor_main-'black'}
+	background_secondary=${kak_opt_background_secondary-'black'}
 	whitespace=${kak_opt_bcolor_whitespace-'bright-black'}
 
 	echo "
