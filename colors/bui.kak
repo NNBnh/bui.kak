@@ -1,11 +1,4 @@
 evaluate-commands %sh{
-	orange=${kak_opt_bcolor_orange-'yellow'}
-	brown=${kak_opt_bcolor_brown-'red'}
-	main=${kak_opt_bcolor_main-'blue'}
-	[[ $kak_opt_bcolor_main_light == 'true' ]] \
-		&& main_foreground='black' \
-		|| main_foreground='bright-white'
-
 	ui_background=${kak_opt_ui_background-'black'}
 	if [[ $kak_opt_bcolor_light == 'true' ]]; then
 		foreground_primary='black'
@@ -18,6 +11,22 @@ evaluate-commands %sh{
 		background_primary='black'
 		background_secondary='bright-black'
 	fi
+	brown=${kak_opt_bcolor_brown-'red'}
+	red=${kak_opt_bcolor_red-'red'}
+	green=${kak_opt_bcolor_green-'green'}
+	lime=${kak_opt_bcolor_lime-'green'}
+	orange=${kak_opt_bcolor_orange-'yellow'}
+	yellow=${kak_opt_bcolor_yellow-'yellow'}
+	purple=${kak_opt_bcolor_purple-'blue'}
+	blue=${kak_opt_bcolor_blue-'blue'}
+	magenta=${kak_opt_bcolor_magenta-'magenta'}
+	pink=${kak_opt_bcolor_pink-'magenta'}
+	tear=${kak_opt_bcolor_tear-'cyan'}
+	cyan=${kak_opt_bcolor_cyan-'cyan'}
+	main=${kak_opt_bcolor_main-'blue'}
+	[[ $kak_opt_bcolor_main_light == 'true' ]] \
+		&& main_foreground='black' \
+		|| main_foreground='bright-white'
 
 	if [[ $kak_opt_bcolor_cursor_main == 'true' ]]; then
 		cursor_primary=$main
