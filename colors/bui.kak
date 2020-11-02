@@ -1,126 +1,154 @@
+#     ____  __  ______
+#    / __ )/ / / /  _/
+#   / __  / / / // /
+#  / /_/ / /_/ // /
+# /_____/\____/___/
+
+# File:         bui.kak
+# Description:  Kakoune colorscheme that SuperB
+# Author:       NNB
+#               └─ https://github.com/NNBnh
+# URL:          https://github.com/NNBnh/bui.kak
+# License:      GPLv3
+
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
 evaluate-commands %sh{
-	ui_background=${kak_opt_ui_background-'black'}
-	if [[ $kak_opt_bcolor_light == 'true' ]]; then
-		foreground_primary='black'
-		foreground_secondary='bright-black'
-		background_primary='bright-white'
-		background_secondary='white'
-	else
-		foreground_primary='bright-white'
-		foreground_secondary='white'
-		background_primary='black'
-		background_secondary='bright-black'
-	fi
-	brown=${kak_opt_bcolor_brown-'red'}
-	red=${kak_opt_bcolor_red-'red'}
-	green=${kak_opt_bcolor_green-'green'}
-	lime=${kak_opt_bcolor_lime-'green'}
-	orange=${kak_opt_bcolor_orange-'yellow'}
-	yellow=${kak_opt_bcolor_yellow-'yellow'}
-	purple=${kak_opt_bcolor_purple-'blue'}
-	blue=${kak_opt_bcolor_blue-'blue'}
-	magenta=${kak_opt_bcolor_magenta-'magenta'}
-	pink=${kak_opt_bcolor_pink-'magenta'}
-	tear=${kak_opt_bcolor_tear-'cyan'}
-	cyan=${kak_opt_bcolor_cyan-'cyan'}
-	main=${kak_opt_bcolor_main-'blue'}
-	[[ $kak_opt_bcolor_main_light == 'true' ]] \
-		&& main_foreground='black' \
-		|| main_foreground='bright-white'
+	# Values
+	i='0'
 
-	if [[ $kak_opt_bcolor_cursor_main == 'true' ]]; then
-		cursor_primary=$main
-		cursor_primary_foreground=$main_foreground
-	else
-		cursor_primary=$foreground_primary
-		cursor_primary_foreground=$background_primary
-	fi
-	cursor_secondary=$foreground_secondary
-	cursor_secondary_foreground=$background_primary
+	while [ "$i" -le 22 ]; do
+		case $i in
+			'0')  element='base00'        ; check=${BUI_COLOR_BASE00:-black}                ;;
+			'1')  element='base01'        ; check=${BUI_COLOR_BASE01:-black}                ;;
+			'2')  element='base02'        ; check=${BUI_COLOR_BASE02:-black}                ;;
+			'3')  element='base03'        ; check=${BUI_COLOR_BASE03:-bright-black}         ;;
+			'4')  element='base04'        ; check=${BUI_COLOR_BASE04:-white}                ;;
+			'5')  element='base05'        ; check=${BUI_COLOR_BASE05:-bright-white}         ;;
+			'6')  element='base06'        ; check=${BUI_COLOR_BASE06:-bright-white}         ;;
+			'7')  element='base07'        ; check=${BUI_COLOR_BASE07:-bright-white}         ;;
+			'8')  element='base08'        ; check=${BUI_COLOR_BASE08:-red}                  ;;
+			'9')  element='base09'        ; check=${BUI_COLOR_BASE09:-yellow}               ;;
+			'10') element='base0A'        ; check=${BUI_COLOR_BASE0A:-yellow}               ;;
+			'11') element='base0B'        ; check=${BUI_COLOR_BASE0B:-green}                ;;
+			'12') element='base0C'        ; check=${BUI_COLOR_BASE0C:-cyan}                 ;;
+			'13') element='base0D'        ; check=${BUI_COLOR_BASE0D:-blue}                 ;;
+			'14') element='base0E'        ; check=${BUI_COLOR_BASE0E:-magenta}              ;;
+			'15') element='base0F'        ; check=${BUI_COLOR_BASE0F:-red}                  ;;
+			'16') element='foreground'    ; check=${BUI_COLOR_FOREGROUND:-default}          ;;
+			'17') element='background'    ; check=${BUI_COLOR_BACKGROUND:-default}          ;;
+			'18') element='foreground_alt'; check=${BUI_COLOR_FOREGROUND_ALT:-bright-black} ;;
+			'19') element='background_alt'; check=${BUI_COLOR_BACKGROUND_ALT:-black}        ;;
+			'20') element='cursor'        ; check=${BUI_COLOR_CURSOR:-bright-white}         ;;
+			'21') element='cursor_alt'    ; check=${BUI_COLOR_CURSOR_ALT:-white}            ;;
+			'22') element='selection'     ; check=${BUI_COLOR_SELECTION:-bright-black}      ;;
+		esac
 
-	if [[ $kak_opt_bcolor_status_main == 'true' ]]; then
-			status_foreground=$main_foreground
-			status_background=$main
-			status_info=$main_foreground
-	else
-			status_foreground=$foreground_primary
-			status_background=$ui_background
-			status_info=$main
-	fi
+		case $check in
+			"$BUI_COLOR_FOREGROUND")
+				$element='default'
+				${element}_compatible='bright-white'
+			;;
+			"$BUI_COLOR_BACKGROUND")
+				$element='default'
+				${element}_compatible='black'
+			;;
+			"$BUI_COLOR_COLOR0")     $element='black'           ;;
+			"$BUI_COLOR_COLOR1")     $element='red'             ;;
+			"$BUI_COLOR_COLOR2")     $element='green'           ;;
+			"$BUI_COLOR_COLOR3")     $element='yellow'          ;;
+			"$BUI_COLOR_COLOR4")     $element='blue'            ;;
+			"$BUI_COLOR_COLOR5")     $element='magenta'         ;;
+			"$BUI_COLOR_COLOR6")     $element='cyan'            ;;
+			"$BUI_COLOR_COLOR7")     $element='white'           ;;
+			"$BUI_COLOR_COLOR8")     $element='bright-black'    ;;
+			"$BUI_COLOR_COLOR9")     $element='bright-red'      ;;
+			"$BUI_COLOR_COLOR10")    $element='bright-green'    ;;
+			"$BUI_COLOR_COLOR11")    $element='bright-yellow'   ;;
+			"$BUI_COLOR_COLOR12")    $element='bright-blue'     ;;
+			"$BUI_COLOR_COLOR13")    $element='bright-magenta'  ;;
+			"$BUI_COLOR_COLOR14")    $element='bright-cyan'     ;;
+			"$BUI_COLOR_COLOR15")    $element='bright-white'    ;;
+			*)                       $element="rgb:${check#\#}" ;;
+		esac
 
-	[[ $kak_opt_bcolor_bright == 'false' ]] || bright='bright-'
+		i=$(( i + 1 ))
+	done
 
 
-	# UI
-	echo "
-		# Normal
-		face global Default             default,default
-		face global PrimarySelection    $background_primary,$background_secondary+fg
-		face global SecondarySelection  PrimarySelection
-		face global PrimaryCursor       $cursor_primary_foreground,$cursor_primary+fg
-		face global SecondaryCursor     $cursor_secondary_foreground,$cursor_secondary+fg
-		face global PrimaryCursorEol    PrimaryCursor
-		face global SecondaryCursorEol  SecondaryCursor
+	# Start
+		# UI
+		echo "
+			# Normal
+			face global Default             $foreground,$background
+			face global PrimarySelection    $background_compatible,$selection+fg
+			face global SecondarySelection  PrimarySelection
+			face global PrimaryCursor       $background_compatible,$cursor+fg
+			face global SecondaryCursor     $background_compatible,$cursor_alt+fg
+			face global PrimaryCursorEol    PrimaryCursor
+			face global SecondaryCursorEol  SecondaryCursor
 
-		# Other
-		face global Error               red,default+rfg
-		face global MatchingChar        default,$ui_background
-		face global BufferPadding       $background_primary,$background_primary
-		face global Whitespace          $background_secondary+f
-		face global WrapMarker          Whitespace
+			# Line number
+			face global LineNumbers         $foreground_alt,$background_alt
+			face global LineNumberCursor    $cursor,$background_alt
+			face global LineNumbersWrapped  $background_alt,$background_alt
 
-		# Line number
-		face global LineNumbers         $background_secondary,$background_primary
-		face global LineNumberCursor    $cursor_primary,$background_primary
-		face global LineNumbersWrapped  $background_primary,$background_primary
+			# Status bar
+			face global StatusLine          $foreground,$background_alt
+			face global StatusLineInfo      $cursor
+			face global StatusLineMode      StatusLineInfo
+			face global StatusLineValue     StatusLineInfo
+			face global MenuForeground      $cursor_primary_foreground,$cursor_primary
+			face global MenuBackground      $foreground_primary,$ui_background
+			face global MenuInfo            $background_secondary
+			face global Information         $main_foreground,$main
+			face global Prompt              Information
+			face global StatusCursor        PrimaryCursor
 
-		# Status bar
-		face global StatusLine          $status_foreground,$status_background
-		face global StatusLineInfo      $status_info
-		face global StatusLineMode      StatusLineInfo
-		face global StatusLineValue     StatusLineInfo
-		face global MenuForeground      $cursor_primary_foreground,$cursor_primary
-		face global MenuBackground      $foreground_primary,$ui_background
-		face global MenuInfo            $background_secondary
-		face global Information         $main_foreground,$main
-		face global Prompt              Information
-		face global StatusCursor        $cursor_primary,$cursor_primary_foreground+fg
-		hook global ModeChange push:.*:prompt %{
-			face global StatusLine      $foreground_primary,$background_primary
-			face global StatusLineInfo  $main
-			face global StatusCursor    $cursor_primary_foreground,$cursor_primary+fg
-		}
-		hook global ModeChange pop:prompt:.* %{
-			face global StatusLine      $status_foreground,$status_background
-			face global StatusLineInfo  $status_info
-			face global StatusCursor    $cursor_primary,$cursor_primary_foreground+fg
-		}
-	"
+			# Other
+			face global Error               $base08,default+rfg
+			face global MatchingChar        $foreground,$background_alt
+			face global BufferPadding       $background_alt,$background_alt
+			face global Whitespace          $background_alt+f
+			face global WrapMarker          Whitespace
+		"
 
-	# Syntax
-	echo "
-		# Code
-		face global value               $orange+b
-		face global type                ${bright}yellow
-		face global variable            ${bright}red
-		face global module              ${bright}green
-		face global function            ${bright}blue
-		face global string              ${bright}green
-		face global keyword             ${bright}magenta+b
-		face global operator            ${bright}blue
-		face global attribute           $orange
-		face global comment             $background_secondary+i
-		face global documentation       comment
-		face global meta                ${bright}yellow
-		face global builtin             default+b
+		# Syntax
+		echo "
+			# Code
+			face global value               $base09+b
+			face global type                $base0A
+			face global variable            $base08
+			face global module              $base0B
+			face global function            $base0D
+			face global string              $base0B
+			face global keyword             $base0E+b
+			face global operator            $base0D
+			face global attribute           $base09
+			face global comment             $base03+i
+			face global documentation       comment
+			face global meta                $base0A
+			face global builtin             $foreground+b
 
-		# Markdown
-		face global title               default+b
-		face global header              ${bright}blue
-		face global mono                ${bright}green
-		face global block               $orange
-		face global link                ${bright}cyan+u
-		face global bullet              ${bright}red
-		face global list                ${bright}red
-	"
+			# Markdown
+			face global title               $foreground+b
+			face global header              $base0D
+			face global mono                $base0B
+			face global block               $base09
+			face global link                $base0C+u
+			face global bullet              $base08
+			face global list                $base08
+		"
 }
