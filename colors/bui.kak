@@ -42,12 +42,12 @@ evaluate-commands %sh{
 			'7')  element='base07'        ; check=${BUI_COLOR_BASE07:-bright-white}         ;;
 			'8')  element='base08'        ; check=${BUI_COLOR_BASE08:-red}                  ;;
 			'9')  element='base09'        ; check=${BUI_COLOR_BASE09:-yellow}               ;;
-			'10') element='base0A'        ; check=${BUI_COLOR_BASE0A:-yellow}               ;;
-			'11') element='base0B'        ; check=${BUI_COLOR_BASE0B:-green}                ;;
-			'12') element='base0C'        ; check=${BUI_COLOR_BASE0C:-cyan}                 ;;
-			'13') element='base0D'        ; check=${BUI_COLOR_BASE0D:-blue}                 ;;
-			'14') element='base0E'        ; check=${BUI_COLOR_BASE0E:-magenta}              ;;
-			'15') element='base0F'        ; check=${BUI_COLOR_BASE0F:-red}                  ;;
+			'10') element='base0a'        ; check=${BUI_COLOR_BASE0A:-yellow}               ;;
+			'11') element='base0b'        ; check=${BUI_COLOR_BASE0B:-green}                ;;
+			'12') element='base0c'        ; check=${BUI_COLOR_BASE0C:-cyan}                 ;;
+			'13') element='base0d'        ; check=${BUI_COLOR_BASE0D:-blue}                 ;;
+			'14') element='base0e'        ; check=${BUI_COLOR_BASE0E:-magenta}              ;;
+			'15') element='base0f'        ; check=${BUI_COLOR_BASE0F:-red}                  ;;
 			'16') element='foreground'    ; check=${BUI_COLOR_FOREGROUND:-default}          ;;
 			'17') element='background'    ; check=${BUI_COLOR_BACKGROUND:-default}          ;;
 			'18') element='foreground_alt'; check=${BUI_COLOR_FOREGROUND_ALT:-bright-black} ;;
@@ -58,31 +58,25 @@ evaluate-commands %sh{
 		esac
 
 		case $check in
-			"$BUI_COLOR_FOREGROUND")
-				$element='default'
-				${element}_compatible='bright-white'
-			;;
-			"$BUI_COLOR_BACKGROUND")
-				$element='default'
-				${element}_compatible='black'
-			;;
-			"$BUI_COLOR_COLOR0")     $element='black'           ;;
-			"$BUI_COLOR_COLOR1")     $element='red'             ;;
-			"$BUI_COLOR_COLOR2")     $element='green'           ;;
-			"$BUI_COLOR_COLOR3")     $element='yellow'          ;;
-			"$BUI_COLOR_COLOR4")     $element='blue'            ;;
-			"$BUI_COLOR_COLOR5")     $element='magenta'         ;;
-			"$BUI_COLOR_COLOR6")     $element='cyan'            ;;
-			"$BUI_COLOR_COLOR7")     $element='white'           ;;
-			"$BUI_COLOR_COLOR8")     $element='bright-black'    ;;
-			"$BUI_COLOR_COLOR9")     $element='bright-red'      ;;
-			"$BUI_COLOR_COLOR10")    $element='bright-green'    ;;
-			"$BUI_COLOR_COLOR11")    $element='bright-yellow'   ;;
-			"$BUI_COLOR_COLOR12")    $element='bright-blue'     ;;
-			"$BUI_COLOR_COLOR13")    $element='bright-magenta'  ;;
-			"$BUI_COLOR_COLOR14")    $element='bright-cyan'     ;;
-			"$BUI_COLOR_COLOR15")    $element='bright-white'    ;;
-			*)                       $element="rgb:${check#\#}" ;;
+			"$BUI_COLOR_FOREGROUND") ${element}_fg='default'        ; ${element}_bg='bright-white'    ;;
+			"$BUI_COLOR_BACKGROUND") ${element}_fg='black'          ; ${element}_bg='default'         ;;
+			"$BUI_COLOR_COLOR0")     ${element}_fg='black'          ; ${element}_bg='black'           ;;
+			"$BUI_COLOR_COLOR1")     ${element}_fg='red'            ; ${element}_bg='red'             ;;
+			"$BUI_COLOR_COLOR2")     ${element}_fg='green'          ; ${element}_bg='green'           ;;
+			"$BUI_COLOR_COLOR3")     ${element}_fg='yellow'         ; ${element}_bg='yellow'          ;;
+			"$BUI_COLOR_COLOR4")     ${element}_fg='blue'           ; ${element}_bg='blue'            ;;
+			"$BUI_COLOR_COLOR5")     ${element}_fg='magenta'        ; ${element}_bg='magenta'         ;;
+			"$BUI_COLOR_COLOR6")     ${element}_fg='cyan'           ; ${element}_bg='cyan'            ;;
+			"$BUI_COLOR_COLOR7")     ${element}_fg='white'          ; ${element}_bg='white'           ;;
+			"$BUI_COLOR_COLOR8")     ${element}_fg='bright-black'   ; ${element}_bg='bright-black'    ;;
+			"$BUI_COLOR_COLOR9")     ${element}_fg='bright-red'     ; ${element}_bg='bright-red'      ;;
+			"$BUI_COLOR_COLOR10")    ${element}_fg='bright-green'   ; ${element}_bg='bright-green'    ;;
+			"$BUI_COLOR_COLOR11")    ${element}_fg='bright-yellow'  ; ${element}_bg='bright-yellow'   ;;
+			"$BUI_COLOR_COLOR12")    ${element}_fg='bright-blue'    ; ${element}_bg='bright-blue'     ;;
+			"$BUI_COLOR_COLOR13")    ${element}_fg='bright-magenta' ; ${element}_bg='bright-magenta'  ;;
+			"$BUI_COLOR_COLOR14")    ${element}_fg='bright-cyan'    ; ${element}_bg='bright-cyan'     ;;
+			"$BUI_COLOR_COLOR15")    ${element}_fg='bright-white'   ; ${element}_bg='bright-white'    ;;
+			*)                       ${element}_fg="rgb:${check#\#}"; ${element}_bg='rgb:${check#\#}' ;;
 		esac
 
 		i=$(( i + 1 ))
@@ -93,63 +87,63 @@ evaluate-commands %sh{
 		# UI
 		echo "
 			# Normal
-			face global Default             $foreground,$background
-			face global PrimarySelection    $background_compatible,$selection+fg
+			face global Default             $foreground_fg,$background_bg
+			face global PrimarySelection    $background_fg,$selection_bg+fg
 			face global SecondarySelection  PrimarySelection
-			face global PrimaryCursor       $background_compatible,$cursor+fg
-			face global SecondaryCursor     $background_compatible,$cursor_alt+fg
+			face global PrimaryCursor       $background_fg,$cursor_bg+fg
+			face global SecondaryCursor     $background_fg,$cursor_alt_bg+fg
 			face global PrimaryCursorEol    PrimaryCursor
 			face global SecondaryCursorEol  SecondaryCursor
 
 			# Line number
-			face global LineNumbers         $foreground_alt,$background_alt
-			face global LineNumberCursor    $cursor,$background_alt
-			face global LineNumbersWrapped  $background_alt,$background_alt
+			face global LineNumbers         $foreground_alt_fg,$background_alt_bg
+			face global LineNumberCursor    $cursor_fg,$background_alt_bg
+			face global LineNumbersWrapped  $background_alt_fg,$background_alt_bg
 
 			# Status bar
-			face global StatusLine          $foreground,$background_alt
-			face global StatusLineInfo      $cursor
+			face global StatusLine          $foreground_fg,$background_alt_bg
+			face global StatusLineInfo      $cursor_fg
 			face global StatusLineMode      StatusLineInfo
 			face global StatusLineValue     StatusLineInfo
-			face global MenuForeground      $cursor_primary_foreground,$cursor_primary
-			face global MenuBackground      $foreground_primary,$ui_background
-			face global MenuInfo            $background_secondary
-			face global Information         $main_foreground,$main
+			face global MenuForeground      $cursor_primary_foreground_fg,$cursor_primary_bg
+			face global MenuBackground      $foreground_primary_fg,$ui_background_bg
+			face global MenuInfo            $background_secondary_fg
+			face global Information         $main_foreground_fg,$main_bg
 			face global Prompt              Information
 			face global StatusCursor        PrimaryCursor
 
 			# Other
-			face global Error               $base08,default+rfg
-			face global MatchingChar        $foreground,$background_alt
-			face global BufferPadding       $background_alt,$background_alt
-			face global Whitespace          $background_alt+f
+			face global Error               $base08_fg,default+rfg
+			face global MatchingChar        $foreground_fg,$background_alt_bg
+			face global BufferPadding       $background_alt_fg,$background_alt_bg
+			face global Whitespace          $background_alt_fg+f
 			face global WrapMarker          Whitespace
 		"
 
 		# Syntax
 		echo "
 			# Code
-			face global value               $base09+b
-			face global type                $base0A
-			face global variable            $base08
-			face global module              $base0B
-			face global function            $base0D
-			face global string              $base0B
-			face global keyword             $base0E+b
-			face global operator            $base0D
-			face global attribute           $base09
+			face global value               $base09_fg+b
+			face global type                $base0a_fg
+			face global variable            $base08_fg
+			face global module              $base0b_fg
+			face global function            $base0d_fg
+			face global string              $base0b_fg
+			face global keyword             $base0e_fg+b
+			face global operator            $base0d_fg
+			face global attribute           $base09_fg
 			face global comment             $base03+i
 			face global documentation       comment
-			face global meta                $base0A
-			face global builtin             $foreground+b
+			face global meta                $base0a_fg
+			face global builtin             $foreground_fg+b
 
 			# Markdown
 			face global title               $foreground+b
-			face global header              $base0D
-			face global mono                $base0B
-			face global block               $base09
-			face global link                $base0C+u
-			face global bullet              $base08
-			face global list                $base08
+			face global header              $base0d_fg
+			face global mono                $base0b_fg
+			face global block               $base09_fg
+			face global link                $base0c_fg+u
+			face global bullet              $base08_fg
+			face global list                $base08_fg
 		"
 }
