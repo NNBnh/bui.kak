@@ -58,25 +58,25 @@ evaluate-commands %sh{
 		esac
 
 		case $check in
-			"$BUI_COLOR_FOREGROUND") ${element}_fg='default'        ; ${element}_bg='bright-white'    ;;
-			"$BUI_COLOR_BACKGROUND") ${element}_fg='black'          ; ${element}_bg='default'         ;;
-			"$BUI_COLOR_TERMINAL0")  ${element}_fg='black'          ; ${element}_bg='black'           ;;
-			"$BUI_COLOR_TERMINAL1")  ${element}_fg='red'            ; ${element}_bg='red'             ;;
-			"$BUI_COLOR_TERMINAL2")  ${element}_fg='green'          ; ${element}_bg='green'           ;;
-			"$BUI_COLOR_TERMINAL3")  ${element}_fg='yellow'         ; ${element}_bg='yellow'          ;;
-			"$BUI_COLOR_TERMINAL4")  ${element}_fg='blue'           ; ${element}_bg='blue'            ;;
-			"$BUI_COLOR_TERMINAL5")  ${element}_fg='magenta'        ; ${element}_bg='magenta'         ;;
-			"$BUI_COLOR_TERMINAL6")  ${element}_fg='cyan'           ; ${element}_bg='cyan'            ;;
-			"$BUI_COLOR_TERMINAL7")  ${element}_fg='white'          ; ${element}_bg='white'           ;;
-			"$BUI_COLOR_TERMINAL8")  ${element}_fg='bright-black'   ; ${element}_bg='bright-black'    ;;
-			"$BUI_COLOR_TERMINAL9")  ${element}_fg='bright-red'     ; ${element}_bg='bright-red'      ;;
-			"$BUI_COLOR_TERMINAL10") ${element}_fg='bright-green'   ; ${element}_bg='bright-green'    ;;
-			"$BUI_COLOR_TERMINAL11") ${element}_fg='bright-yellow'  ; ${element}_bg='bright-yellow'   ;;
-			"$BUI_COLOR_TERMINAL12") ${element}_fg='bright-blue'    ; ${element}_bg='bright-blue'     ;;
-			"$BUI_COLOR_TERMINAL13") ${element}_fg='bright-magenta' ; ${element}_bg='bright-magenta'  ;;
-			"$BUI_COLOR_TERMINAL14") ${element}_fg='bright-cyan'    ; ${element}_bg='bright-cyan'     ;;
-			"$BUI_COLOR_TERMINAL15") ${element}_fg='bright-white'   ; ${element}_bg='bright-white'    ;;
-			*)                       ${element}_fg="rgb:${check#\#}"; ${element}_bg='rgb:${check#\#}' ;;
+			"$BUI_COLOR_FOREGROUND")  ${element}_fg='default'        ; ${element}_bg='bright-white'    ;;
+			"$BUI_COLOR_BACKGROUND")  ${element}_fg='black'          ; ${element}_bg='default'         ;;
+			"$BUI_COLOR_TERMINAL000") ${element}_fg='black'          ; ${element}_bg='black'           ;;
+			"$BUI_COLOR_TERMINAL001") ${element}_fg='red'            ; ${element}_bg='red'             ;;
+			"$BUI_COLOR_TERMINAL002") ${element}_fg='green'          ; ${element}_bg='green'           ;;
+			"$BUI_COLOR_TERMINAL003") ${element}_fg='yellow'         ; ${element}_bg='yellow'          ;;
+			"$BUI_COLOR_TERMINAL004") ${element}_fg='blue'           ; ${element}_bg='blue'            ;;
+			"$BUI_COLOR_TERMINAL005") ${element}_fg='magenta'        ; ${element}_bg='magenta'         ;;
+			"$BUI_COLOR_TERMINAL006") ${element}_fg='cyan'           ; ${element}_bg='cyan'            ;;
+			"$BUI_COLOR_TERMINAL007") ${element}_fg='white'          ; ${element}_bg='white'           ;;
+			"$BUI_COLOR_TERMINAL008") ${element}_fg='bright-black'   ; ${element}_bg='bright-black'    ;;
+			"$BUI_COLOR_TERMINAL009") ${element}_fg='bright-red'     ; ${element}_bg='bright-red'      ;;
+			"$BUI_COLOR_TERMINAL010") ${element}_fg='bright-green'   ; ${element}_bg='bright-green'    ;;
+			"$BUI_COLOR_TERMINAL011") ${element}_fg='bright-yellow'  ; ${element}_bg='bright-yellow'   ;;
+			"$BUI_COLOR_TERMINAL012") ${element}_fg='bright-blue'    ; ${element}_bg='bright-blue'     ;;
+			"$BUI_COLOR_TERMINAL013") ${element}_fg='bright-magenta' ; ${element}_bg='bright-magenta'  ;;
+			"$BUI_COLOR_TERMINAL014") ${element}_fg='bright-cyan'    ; ${element}_bg='bright-cyan'     ;;
+			"$BUI_COLOR_TERMINAL015") ${element}_fg='bright-white'   ; ${element}_bg='bright-white'    ;;
+			*)                        ${element}_fg="rgb:${check#\#}"; ${element}_bg='rgb:${check#\#}' ;;
 		esac
 
 		i=$(( i + 1 ))
