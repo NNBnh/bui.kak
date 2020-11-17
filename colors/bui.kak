@@ -58,25 +58,25 @@ evaluate-commands %sh{
 		esac
 
 		case $check in
-			"$BUI_COLOR_FOREGROUND")  eval "${element}_fg=default"        ; eval "${element}_bg='bright-white"    ;;
-			"$BUI_COLOR_BACKGROUND")  eval "${element}_fg=black"          ; eval "${element}_bg='default"         ;;
-			"$BUI_COLOR_TERMINAL000") eval "${element}_fg=black"          ; eval "${element}_bg='black"           ;;
-			"$BUI_COLOR_TERMINAL001") eval "${element}_fg=red"            ; eval "${element}_bg='red"             ;;
-			"$BUI_COLOR_TERMINAL002") eval "${element}_fg=green"          ; eval "${element}_bg='green"           ;;
-			"$BUI_COLOR_TERMINAL003") eval "${element}_fg=yellow"         ; eval "${element}_bg='yellow"          ;;
-			"$BUI_COLOR_TERMINAL004") eval "${element}_fg=blue"           ; eval "${element}_bg='blue"            ;;
-			"$BUI_COLOR_TERMINAL005") eval "${element}_fg=magenta"        ; eval "${element}_bg='magenta"         ;;
-			"$BUI_COLOR_TERMINAL006") eval "${element}_fg=cyan"           ; eval "${element}_bg='cyan"            ;;
-			"$BUI_COLOR_TERMINAL007") eval "${element}_fg=white"          ; eval "${element}_bg='white"           ;;
-			"$BUI_COLOR_TERMINAL008") eval "${element}_fg=bright-black"   ; eval "${element}_bg='bright-black"    ;;
-			"$BUI_COLOR_TERMINAL009") eval "${element}_fg=bright-red"     ; eval "${element}_bg='bright-red"      ;;
-			"$BUI_COLOR_TERMINAL010") eval "${element}_fg=bright-green"   ; eval "${element}_bg='bright-green"    ;;
-			"$BUI_COLOR_TERMINAL011") eval "${element}_fg=bright-yellow"  ; eval "${element}_bg='bright-yellow"   ;;
-			"$BUI_COLOR_TERMINAL012") eval "${element}_fg=bright-blue"    ; eval "${element}_bg='bright-blue"     ;;
-			"$BUI_COLOR_TERMINAL013") eval "${element}_fg=bright-magenta" ; eval "${element}_bg='bright-magenta"  ;;
-			"$BUI_COLOR_TERMINAL014") eval "${element}_fg=bright-cyan"    ; eval "${element}_bg='bright-cyan"     ;;
-			"$BUI_COLOR_TERMINAL015") eval "${element}_fg=bright-white"   ; eval "${element}_bg='bright-white"    ;;
-			*)                        eval "${element}_fg=rgb:${check#\#}"; eval "${element}_bg='rgb:${check#\#}" ;;
+			"$BUI_COLOR_FOREGROUND")  eval "${element}_fg=default"        ; eval "${element}_bg=bright-white"    ;;
+			"$BUI_COLOR_BACKGROUND")  eval "${element}_fg=black"          ; eval "${element}_bg=default"         ;;
+			"$BUI_COLOR_TERMINAL000") eval "${element}_fg=black"          ; eval "${element}_bg=black"           ;;
+			"$BUI_COLOR_TERMINAL001") eval "${element}_fg=red"            ; eval "${element}_bg=red"             ;;
+			"$BUI_COLOR_TERMINAL002") eval "${element}_fg=green"          ; eval "${element}_bg=green"           ;;
+			"$BUI_COLOR_TERMINAL003") eval "${element}_fg=yellow"         ; eval "${element}_bg=yellow"          ;;
+			"$BUI_COLOR_TERMINAL004") eval "${element}_fg=blue"           ; eval "${element}_bg=blue"            ;;
+			"$BUI_COLOR_TERMINAL005") eval "${element}_fg=magenta"        ; eval "${element}_bg=magenta"         ;;
+			"$BUI_COLOR_TERMINAL006") eval "${element}_fg=cyan"           ; eval "${element}_bg=cyan"            ;;
+			"$BUI_COLOR_TERMINAL007") eval "${element}_fg=white"          ; eval "${element}_bg=white"           ;;
+			"$BUI_COLOR_TERMINAL008") eval "${element}_fg=bright-black"   ; eval "${element}_bg=bright-black"    ;;
+			"$BUI_COLOR_TERMINAL009") eval "${element}_fg=bright-red"     ; eval "${element}_bg=bright-red"      ;;
+			"$BUI_COLOR_TERMINAL010") eval "${element}_fg=bright-green"   ; eval "${element}_bg=bright-green"    ;;
+			"$BUI_COLOR_TERMINAL011") eval "${element}_fg=bright-yellow"  ; eval "${element}_bg=bright-yellow"   ;;
+			"$BUI_COLOR_TERMINAL012") eval "${element}_fg=bright-blue"    ; eval "${element}_bg=bright-blue"     ;;
+			"$BUI_COLOR_TERMINAL013") eval "${element}_fg=bright-magenta" ; eval "${element}_bg=bright-magenta"  ;;
+			"$BUI_COLOR_TERMINAL014") eval "${element}_fg=bright-cyan"    ; eval "${element}_bg=bright-cyan"     ;;
+			"$BUI_COLOR_TERMINAL015") eval "${element}_fg=bright-white"   ; eval "${element}_bg=bright-white"    ;;
+			*)                        eval "${element}_fg=rgb:${check#\#}"; eval "${element}_bg=rgb:${check#\#}" ;;
 		esac
 
 		i=$(( i + 1 ))
@@ -105,10 +105,10 @@ evaluate-commands %sh{
 			face global StatusLineInfo      $cursor_fg
 			face global StatusLineMode      StatusLineInfo
 			face global StatusLineValue     StatusLineInfo
-			face global MenuForeground      $cursor_primary_foreground_fg,$cursor_primary_bg
-			face global MenuBackground      $foreground_primary_fg,$ui_background_bg
-			face global MenuInfo            $background_secondary_fg
-			face global Information         $main_foreground_fg,$main_bg
+			face global MenuForeground      $background_fg,$cursor_bg
+			face global MenuBackground      $foreground_fg,$background_alt_bg
+			face global MenuInfo            $foreground_alt_fg
+			face global Information         $background_fg,$main_bg
 			face global Prompt              Information
 			face global StatusCursor        PrimaryCursor
 
@@ -132,7 +132,7 @@ evaluate-commands %sh{
 			face global keyword             $base0e_fg+b
 			face global operator            $base0d_fg
 			face global attribute           $base09_fg
-			face global comment             $base03+i
+			face global comment             $base03_fg+i
 			face global documentation       comment
 			face global meta                $base0a_fg
 			face global builtin             $foreground_fg+b
