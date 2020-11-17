@@ -108,7 +108,7 @@ evaluate-commands %sh{
 			face global MenuForeground      $background_fg,$cursor_bg
 			face global MenuBackground      $foreground_fg,$background_alt_bg
 			face global MenuInfo            $foreground_alt_fg
-			face global Information         $background_fg,$main_bg
+			face global Information         $background_fg,$cursor_bg
 			face global Prompt              Information
 			face global StatusCursor        PrimaryCursor
 
