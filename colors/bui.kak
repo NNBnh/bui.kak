@@ -48,8 +48,8 @@ evaluate-commands %sh{
 			'13') element='base0d'        ; check=${BUI_COLOR_BASE0D:-blue}                 ;;
 			'14') element='base0e'        ; check=${BUI_COLOR_BASE0E:-magenta}              ;;
 			'15') element='base0f'        ; check=${BUI_COLOR_BASE0F:-red}                  ;;
-			'16') element='foreground'    ; check=${BUI_COLOR_FOREGROUND:-default}          ;;
-			'17') element='background'    ; check=${BUI_COLOR_BACKGROUND:-default}          ;;
+			'16') element='foreground'    ; check=${BUI_COLOR_FOREGROUND:-foreground}       ;;
+			'17') element='background'    ; check=${BUI_COLOR_BACKGROUND:-background}       ;;
 			'18') element='foreground_alt'; check=${BUI_COLOR_FOREGROUND_ALT:-bright-black} ;;
 			'19') element='background_alt'; check=${BUI_COLOR_BACKGROUND_ALT:-black}        ;;
 			'20') element='cursor'        ; check=${BUI_COLOR_CURSOR:-bright-white}         ;;
@@ -58,29 +58,31 @@ evaluate-commands %sh{
 		esac
 
 		case $check in
-			"$BUI_COLOR_FOREGROUND")  eval "${element}_fg=default"        ; eval "${element}_bg=bright-white"    ;;
-			"$BUI_COLOR_BACKGROUND")  eval "${element}_fg=black"          ; eval "${element}_bg=default"         ;;
-			"$BUI_COLOR_TERMINAL000") eval "${element}_fg=black"          ; eval "${element}_bg=black"           ;;
-			"$BUI_COLOR_TERMINAL001") eval "${element}_fg=red"            ; eval "${element}_bg=red"             ;;
-			"$BUI_COLOR_TERMINAL002") eval "${element}_fg=green"          ; eval "${element}_bg=green"           ;;
-			"$BUI_COLOR_TERMINAL003") eval "${element}_fg=yellow"         ; eval "${element}_bg=yellow"          ;;
-			"$BUI_COLOR_TERMINAL004") eval "${element}_fg=blue"           ; eval "${element}_bg=blue"            ;;
-			"$BUI_COLOR_TERMINAL005") eval "${element}_fg=magenta"        ; eval "${element}_bg=magenta"         ;;
-			"$BUI_COLOR_TERMINAL006") eval "${element}_fg=cyan"           ; eval "${element}_bg=cyan"            ;;
-			"$BUI_COLOR_TERMINAL007") eval "${element}_fg=white"          ; eval "${element}_bg=white"           ;;
-			"$BUI_COLOR_TERMINAL008") eval "${element}_fg=bright-black"   ; eval "${element}_bg=bright-black"    ;;
-			"$BUI_COLOR_TERMINAL009") eval "${element}_fg=bright-red"     ; eval "${element}_bg=bright-red"      ;;
-			"$BUI_COLOR_TERMINAL010") eval "${element}_fg=bright-green"   ; eval "${element}_bg=bright-green"    ;;
-			"$BUI_COLOR_TERMINAL011") eval "${element}_fg=bright-yellow"  ; eval "${element}_bg=bright-yellow"   ;;
-			"$BUI_COLOR_TERMINAL012") eval "${element}_fg=bright-blue"    ; eval "${element}_bg=bright-blue"     ;;
-			"$BUI_COLOR_TERMINAL013") eval "${element}_fg=bright-magenta" ; eval "${element}_bg=bright-magenta"  ;;
-			"$BUI_COLOR_TERMINAL014") eval "${element}_fg=bright-cyan"    ; eval "${element}_bg=bright-cyan"     ;;
-			"$BUI_COLOR_TERMINAL015") eval "${element}_fg=bright-white"   ; eval "${element}_bg=bright-white"    ;;
-			*)                        eval "${element}_fg=rgb:${check#\#}"; eval "${element}_bg=rgb:${check#\#}" ;;
+			"${BUI_COLOR_FOREGROUND:-foreground}")      eval "${element}_fg=\"default\"        ; ${element}_bg=\"bright-white\""    ;;
+			"${BUI_COLOR_BACKGROUND:-background}")      eval "${element}_fg=\"black\"          ; ${element}_bg=\"default\""         ;;
+			"${BUI_COLOR_TERMINAL000:-black}")          eval "${element}_fg=\"black\"          ; ${element}_bg=\"black\""           ;;
+			"${BUI_COLOR_TERMINAL001:-red}")            eval "${element}_fg=\"red\"            ; ${element}_bg=\"red\""             ;;
+			"${BUI_COLOR_TERMINAL002:-green}")          eval "${element}_fg=\"green\"          ; ${element}_bg=\"green\""           ;;
+			"${BUI_COLOR_TERMINAL003:-yellow}")         eval "${element}_fg=\"yellow\"         ; ${element}_bg=\"yellow\""          ;;
+			"${BUI_COLOR_TERMINAL004:-blue}")           eval "${element}_fg=\"blue\"           ; ${element}_bg=\"blue\""            ;;
+			"${BUI_COLOR_TERMINAL005:-magenta}")        eval "${element}_fg=\"magenta\"        ; ${element}_bg=\"magenta\""         ;;
+			"${BUI_COLOR_TERMINAL006:-cyan}")           eval "${element}_fg=\"cyan\"           ; ${element}_bg=\"cyan\""            ;;
+			"${BUI_COLOR_TERMINAL007:-white}")          eval "${element}_fg=\"white\"          ; ${element}_bg=\"white\""           ;;
+			"${BUI_COLOR_TERMINAL008:-bright-black}")   eval "${element}_fg=\"bright-black\"   ; ${element}_bg=\"bright-black\""    ;;
+			"${BUI_COLOR_TERMINAL009:-bright-red}")     eval "${element}_fg=\"bright-red\"     ; ${element}_bg=\"bright-red\""      ;;
+			"${BUI_COLOR_TERMINAL010:-bright-green}")   eval "${element}_fg=\"bright-green\"   ; ${element}_bg=\"bright-green\""    ;;
+			"${BUI_COLOR_TERMINAL011:-bright-yellow}")  eval "${element}_fg=\"bright-yellow\"  ; ${element}_bg=\"bright-yellow\""   ;;
+			"${BUI_COLOR_TERMINAL012:-bright-blue}")    eval "${element}_fg=\"bright-blue\"    ; ${element}_bg=\"bright-blue\""     ;;
+			"${BUI_COLOR_TERMINAL013:-bright-magenta}") eval "${element}_fg=\"bright-magenta\" ; ${element}_bg=\"bright-magenta\""  ;;
+			"${BUI_COLOR_TERMINAL014:-bright-cyan}")    eval "${element}_fg=\"bright-cyan\"    ; ${element}_bg=\"bright-cyan\""     ;;
+			"${BUI_COLOR_TERMINAL015:-bright-white}")   eval "${element}_fg=\"bright-white\"   ; ${element}_bg=\"bright-white\""    ;;
+			*)                                          eval "${element}_fg=\"rgb:${check#\#}\"; ${element}_bg=\"rgb:${check#\#}\"" ;;
 		esac
 
 		i=$(( i + 1 ))
 	done
+
+	[ "$kak_opt_bui_cursor_information" = 'true' ] && information='MenuForeground'
 
 
 	# Start
@@ -108,7 +110,7 @@ evaluate-commands %sh{
 			face global MenuForeground      $background_fg,$cursor_bg
 			face global MenuBackground      $foreground_fg,$background_alt_bg
 			face global MenuInfo            $foreground_alt_fg
-			face global Information         $background_fg,$cursor_bg
+			face global Information         ${information:-$foreground_fg,$background_alt_bg}
 			face global Prompt              Information
 			face global StatusCursor        PrimaryCursor
 
