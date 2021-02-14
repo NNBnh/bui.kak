@@ -12,7 +12,7 @@
 - [Installation](#installation)
 
 ## Installation
-- With [`plug.kak`](https://github.com/robertmeta/plug.kak) just put this in your `kakrc`:
+With [`plug.kak`](https://github.com/robertmeta/plug.kak) just put this in your `kakrc`:
 
 ```
 plug "NNBnh/bui.kak" theme config %{
