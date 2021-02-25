@@ -1,5 +1,5 @@
 <h1 align="center"><code>bui.kak</code></h1>
-<p align="center">Kakoune colorscheme that <i>SuperB</i></p>
+<p align="center">BUI for Kakoune</p>
 <p align="center"><img src="https://img.shields.io/github/license/NNBnh/bui.kak?labelColor=585858&color=F7CA88&style=for-the-badge" alt="License: GPL-3.0"> <img src="https://img.shields.io/github/last-commit/NNBnh/bui.kak?labelColor=585858&color=F7CA88&style=for-the-badge"></p>
 <p align="center"><img src="https://img.shields.io/github/watchers/NNBnh/bui.kak?labelColor=585858&color=F7CA88&style=flat-square"> <img src="https://img.shields.io/github/stars/NNBnh/bui.kak?labelColor=585858&color=F7CA88&style=flat-square"> <img src="https://img.shields.io/github/forks/NNBnh/bui.kak?labelColor=585858&color=F7CA88&style=flat-square"> <img src="https://img.shields.io/github/issues/NNBnh/bui.kak?labelColor=585858&color=F7CA88&style=flat-square"></p>
 
