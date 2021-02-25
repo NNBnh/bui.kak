@@ -3,10 +3,9 @@
 #   / __  / / / // /
 #  / /_/ / /_/ // /
 # /_____/\____/___/
-#
 
 # File:         bui.kak
-# Description:  Kakoune colorscheme that SuperB
+# Description:  BUI for Kakoune
 # Author:       NNB
 #               └─ https://github.com/NNBnh
 # URL:          https://github.com/NNBnh/bui.kak
